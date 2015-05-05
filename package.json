@@ -18,6 +18,7 @@
     ]
   },
   "dependencies": {
+    "babelify": "^6.0.2",
     "browser-sync": "~2.4.0",
     "browserify": "^8.0.2",
     "coffeeify": "~0.7.0",

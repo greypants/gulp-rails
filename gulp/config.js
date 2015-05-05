@@ -41,5 +41,8 @@ module.exports = {
       outputName: 'global.js',
       extensions: ['.js','.coffee']
     }]
+  },
+  babelify: {
+    stage: 1
   }
 };
