@@ -8,3 +8,4 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sqlite3', group: :development
 gem 'pg', group: :production # For heroku
+gem 'sprockets', '2.11.0'
