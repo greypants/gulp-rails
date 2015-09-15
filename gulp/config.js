@@ -1,5 +1,6 @@
 var publicAssets = "./public/assets";
 var sourceFiles  = "./gulp/assets";
+var stringify = require('stringify');
 
 module.exports = {
   publicAssets: publicAssets,
@@ -36,6 +37,10 @@ module.exports = {
   },
   browserify: {
     bundleConfigs: [{
+      transform: stringify({
+        extensions: ['.html'],
+         minify: true
+      }),
       entries: sourceFiles + '/javascripts/global.coffee',
       dest: publicAssets + '/javascripts',
       outputName: 'global.js',
