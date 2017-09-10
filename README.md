@@ -24,11 +24,24 @@ Clone the repository
 git clone https://github.com/vigetlabs/gulp-rails-pipeline.git
 ```
 
-Enter into the directory and run bundle install
+Enter into the directory and run bundle install.
 ```
 cd gulp-rails-pipeline
 bundle install
 ```
+
+If you are on mac you may be required to run the following to [install PostgreSQL libraries successfully](http://stackoverflow.com/a/28206009/1376627).
+
+    ARCHFLAGS="-arch x86_64" bundle install
+
+It is required to update sprockets to use an older `2.x` version to remove `self.js` from loaded resources for
+BrowserSync to work properly
+
+    bundle update sprockets
+
+or for mac
+
+    ARCHFLAGS="-arch x86_64" bundle update sprockets
 
 Install javascript dependencies. Once npm install runs, the `postinstall` setting in `package.json` will run `gulp build` and do an initial build of your assets.
 ```
