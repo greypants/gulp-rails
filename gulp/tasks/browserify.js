@@ -2,15 +2,16 @@ var _            = require('lodash');
 var browserify   = require('browserify');
 var browserSync  = require('browser-sync');
 var bundleLogger = require('../util/bundleLogger');
-var config       = require('../config').browserify;
+var config       = require('../config');
 var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 var watchify     = require('watchify');
+var babelify     = require('babelify');
 
 var browserifyTask = function(callback, devMode) {
 
-  var bundleQueue = config.bundleConfigs.length;
+  var bundleQueue = config.browserify.bundleConfigs.length;
 
   var browserifyThis = function(bundleConfig) {
 
@@ -25,6 +26,7 @@ var browserifyTask = function(callback, devMode) {
       bundleLogger.start(bundleConfig.outputName);
 
       return b
+        .transform(babelify.configure(config.babelify))
         .bundle()
         .on('error', handleErrors)
         .pipe(source(bundleConfig.outputName))
@@ -56,7 +58,7 @@ var browserifyTask = function(callback, devMode) {
     return bundle();
   };
 
-  config.bundleConfigs.forEach(browserifyThis);
+  config.browserify.bundleConfigs.forEach(browserifyThis);
 };
 
 gulp.task('browserify', browserifyTask);

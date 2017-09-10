@@ -1,1 +1,5 @@
-module.exports = 'yay modules!';
+import name from './name';
+
+var message = `Hello ${name}!`;
+
+export default message;
